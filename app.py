@@ -1,10 +1,9 @@
 import streamlit as st
 import pandas as pd
-import pickle
+import joblib  # ✅ Use joblib instead of pickle
 
 # Load the trained model
-with open('logistic_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+model = joblib.load('logistic_model.pkl')  # ✅ Correct loading method
 
 # Streamlit App Title and Description
 st.title("🌊 Titanic Survival Prediction App")
@@ -46,7 +45,6 @@ def user_input():
         'Embarked': Embarked
     }
     return pd.DataFrame(data, index=[0])
-
 
 # Get user input
 input_data = user_input()
